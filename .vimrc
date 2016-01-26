@@ -1,6 +1,6 @@
-"""========================="""
-"""    Neobundle settings   """
-"""========================="""
+"=========================
+"    Neobundle settings
+"=========================
 " neobundle settings {{{
 if has('vim_starting')
   set nocompatible
@@ -34,12 +34,6 @@ NeoBundle 'Shougo/vimproc', {
   \     'unix' : 'make -f make_unix.mak',
   \    },
   \ }
-if has('lua')
-	  NeoBundleLazy 'Shougo/neocomplete.vim', {
-	      \ 'depends' : 'Shougo/vimproc',
-	      \ 'autoload' : { 'insert' : 1,}
-	      \ }
-endif
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'LeafCage/yankround.vim'
@@ -51,16 +45,15 @@ NeoBundle 'vim-autopep8'
 NeoBundleCheck
 call neobundle#end()
 
-"""========================="""
-"""coloro scheme jellybeans """
-"""========================="""
+"=========================
+"coloro scheme jellybeans
+"=========================
 set t_Co=256
 syntax on
-colorscheme 
 
-"""========================="""
-"""        FOR unite        """
-"""========================="""
+"=========================
+"        FOR unite
+"=========================
 let g:unite_enable_start_insert=1
 nmap <silent> <C-u><C-b> :<C-u>Unite buffer<CR>
 nmap <silent> <C-u><C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
@@ -75,9 +68,9 @@ au FileType unite imap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
 au FileType unite nmap <silent> <buffer> <C-j> q
 au FileType unite imap <silent> <buffer> <C-j><C-j> <ESC>q
 
-"""========================="""
-"""       FOR neocomplete   """
-"""========================="""
+"=========================
+"       FOR neocomplete
+"=========================
 let g:neocomplete#enable_at_startup               = 1
 let g:neocomplete#auto_completion_start_length    = 3
 let g:neocomplete#enable_ignore_case              = 1
@@ -89,9 +82,9 @@ let g:neocomplete#sources#tags#cache_limit_size   = 30000000
 let g:neocomplete#enable_fuzzy_completion         = 1
 let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
 
-"""========================="""
-"""      FOR yankround      """
-"""========================="""
+"=========================
+"      FOR yankround
+"=========================
 nmap p <Plug>(yankround-p)
 nmap <C-p> <Plug>(yankround-prev)
 nmap P <Plug>(yankround-P)
@@ -100,22 +93,34 @@ nmap <C-n> <Plug>(yankround-next)
 let g:yankround_max_history = 100
 nnoremap <Leader><C-p> :<C-u>Unite yankround<CR>
 
-"""========================="""
-"""        FOR preVim       """
-"""========================="""
+"=========================
+"        FOR preVim
+"=========================
 let g:previm_open_cmd = 'open -a Google\ Chrome'
 autocmd BufNewFile,BufRead *.md set filetype=markdown 
 set list  " 不可視文字を表示する
 set listchars=tab:>-,trail:.  " タブを >--- 半スペを . で表示する
 
-"""========================="""
-"""      FOR syntastic      """
-"""========================="""
+"=========================
+"      FOR syntastic
+"=========================
 let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 
 
-"""========================="""
-"""     General setting     """
-"""========================="""
+"=========================
+"     General setting
+"=========================
 imap <C-j> <ESC>
 set number
+
+"=========================
+"     jedi-vim setting
+"=========================
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+" g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'

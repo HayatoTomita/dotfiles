@@ -76,3 +76,5 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 export PATH="$HOME/anaconda3/bin:$PATH"
+export PATH="/usr/local/pgsql/bin:$PATH"
+export PGDATA="/usr/local/pgsql/data"
