@@ -1,4 +1,6 @@
-[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
+export LC_ALL='ja_JP.UTF-8'
+
+# [[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
 #############################
 # #       for git        ###
 #############################
@@ -78,3 +80,7 @@ RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 export PATH="$HOME/anaconda3/bin:$PATH"
 export PATH="/usr/local/pgsql/bin:$PATH"
 export PGDATA="/usr/local/pgsql/data"
+export OPENNI2_INCLUDE=/usr/local/include/ni2
+export OPENNI2_REDIST=/usr/local/lib/ni2
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
